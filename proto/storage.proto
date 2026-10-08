@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package storage;
+
+service FileStorage {
+    rpc Upload(UploadRequest) returns (UploadResponse);
+    rpc Download(DownloadRequest) returns (DownloadResponse);
+}
+
+message UploadRequest {
+    string filename = 1;
+    bytes content = 2;
+}
+
+message UploadResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message DownloadRequest {
+    string filename = 1;
+}
+
+message DownloadResponse {
+    bool success = 1;
+    string message = 2;
+    bytes content = 3;
+}

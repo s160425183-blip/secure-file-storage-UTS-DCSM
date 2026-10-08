@@ -1,0 +1,17 @@
+services:
+  secure-file-storage:
+    build: .
+    container_name: secure-file-storage
+    ports:
+      - "50051:50051"
+
+    volumes:
+      - ./storage:/app/storage
+      - ./logs:/app/logs
+
+      # Sertifikat yang dibutuhkan server
+      - ./certs/server.crt:/app/certs/server.crt:ro
+      - ./certs/server.key:/app/certs/server.key:ro
+      - ./certs/ca.crt:/app/certs/ca.crt:ro
+
+    restart: unless-stopped
